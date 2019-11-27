@@ -14,8 +14,8 @@
 
 int main()
 {
-	std::vector<int> A {1,2,3,4,5,6};
-	std::vector<int> B {1,2};
+	std::vector<int> A {1,2,3,4,5};
+	std::vector<int> B {1,2,3,4,5};
 	std::vector<int> results(A.size()-1);  // size of A - 1 , should be 5
 	std::vector<int> rev(A.size());      // size of A , should be 6
 	int i = 0;
@@ -42,7 +42,9 @@ int main()
 
 	std::cout << std::endl << "Results " << std::endl;
 	for(auto n : results)
+	{
 		std::cout << n << " ";
+	}
 	std::cout << std::endl;
 
 	return 0;
