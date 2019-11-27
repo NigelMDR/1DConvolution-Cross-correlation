@@ -16,7 +16,7 @@ int main()
 {
 	std::vector<int> A {1,2,3,4,5};
 	std::vector<int> B {1,2,3,4,5};
-	std::vector<int> results(A.size()-1);  // size of A - 1 , should be 5
+	std::vector<int> results(A.size()+B.size()-1);  // size of A - 1 , should be 5
 	std::vector<int> rev(A.size());      // size of A , should be 6
 	int i = 0;
 
@@ -29,14 +29,27 @@ int main()
 		std::cout << n << " ";
 	std::cout << std::endl;
 
-	for(int n = 0; n != A.size()-B.size()+1; n++) // 1 , 2 , 3 , 4 , 5 , 6
+	/* Insert Zeros */
+
+	std::vector<int> NewA(B.size()*2 + A.size() - 2,0);
+	size_t j = B.size()-1;
+	std::cout << std::endl;
+	for(size_t n = 0; A.size() != n; n++, j++)
+	{
+		NewA[j] = A[n];
+	}
+	for(auto n : NewA)
+		std::cout << n << " ";
+	
+	/* end of Insert */
+
+	for(int n = 0; n != NewA.size()-B.size()+1; n++) // 1 , 2 , 3 , 4 , 5 , 6
 	{
 		int total = 0;
 		int i = B.size()-1; 
-		int k = n;
+		size_t k = n;
 		for( ; i != -1; i--, k++)  // 2 , 1
-			total += A[k] * B[i];
-
+			total += NewA[k] * B[i];
 		results[n] = total;
 	}
 
